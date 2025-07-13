@@ -1,6 +1,6 @@
 ﻿@* @using Microsoft.AspNetCore.Identity *@
 @* Move the above library to the _ViewImports.cshtml file if you want to use it across multiple views. *@
-@inject SignInManager<IdentityUser> SignInManager
+@inject SignInManager<IdentityUser> signInManager
 
 <!DOCTYPE html>
 
@@ -59,7 +59,7 @@
                 <ul class="navbar-nav ms-auto">
 
                     @*If the user is signed-in display Logout link*@
-                    @if (SignInManager.IsSignedIn(User))
+                    @if (signInManager.IsSignedIn(User))
                     {
                         <li class="nav-item">
                             <form method="post" asp-controller="account" asp-action="logout">
