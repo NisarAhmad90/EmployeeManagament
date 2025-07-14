@@ -1,9 +1,12 @@
 ﻿
 using EmployeeManagament.Models;
 using EmployeeManagament.Settings;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Net;
 
 namespace EmployeeManagament
 {
@@ -23,7 +26,17 @@ namespace EmployeeManagament
               options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDBConnection")));
 
 
-            builder.Services.AddControllersWithViews(); // Replaces AddMvc()
+            //builder.Services.AddControllersWithViews(); // Replaces AddMvc()
+
+            // Global authorization filter
+            // This ensures that all controllers/actions require authenticated users by default — you don’t have to add [Authorize] manually to each one.You can still override this by using [AllowAnonymous] on specific controllers/actions.
+            builder.Services.AddControllersWithViews(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                .RequireAuthenticatedUser()
+                                .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
             builder.Services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
             // appsetting 2
             var appSettings = builder.Configuration.GetSection("AppSettings").Get<AppSettings>();
