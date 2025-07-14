@@ -46,7 +46,7 @@ namespace EmployeeManagament
 
             // Password Configuration
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     options.Password.RequiredLength = 5;
                     options.Password.RequiredUniqueChars = 2;
