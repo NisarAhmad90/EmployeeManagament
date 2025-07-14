@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagament.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
@@ -19,14 +20,14 @@ namespace EmployeeManagament.Controllers
         public UserManager<IdentityUser> UserManager { get; }
 
         [HttpGet]
-        [AllowAnonymous]
+        
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
+       
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -74,7 +75,7 @@ namespace EmployeeManagament.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+      
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
