@@ -15,7 +15,8 @@
     </div>
 
     <div class="mb-3 row">
-        <label asp-for="RoleName" class="col-sm-2 col-form-label"></label>
+        <label for="RoleName" class="col-sm-2 col-form-label">Custom Role Name</label>
+        @* <label asp-for="RoleName" class="col-sm-2 col-form-label"></label> *@
         <div class="col-sm-10">
             <input asp-for="RoleName" class="form-control" />
             <span asp-validation-for="RoleName" class="text-danger"></span>
@@ -49,8 +50,14 @@
             }
         </div>
         <div class="card-footer">
-            <a href="#" class="btn btn-outline-primary  w-auto me-2">Add Users</a>
-            <a href="#" class="btn btn-outline-danger  w-auto">Remove Users</a>
+            @* <a href="#" class="btn btn-outline-danger  w-auto">Remove Users</a> *@
+            <a asp-controller="Administration" asp-action="EditUsersInRole"
+               asp-route-roleId="@Model.Id" class="btn btn-outline-primary  w-auto me-2">
+                Add or remove users from this role
+            </a>
+
+
+
         </div>
     </div>
 </form>
