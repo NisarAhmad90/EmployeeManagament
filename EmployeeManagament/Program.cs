@@ -74,7 +74,7 @@ namespace EmployeeManagament
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication(); // 🔑 Must come before UseAuthorization
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
 
 

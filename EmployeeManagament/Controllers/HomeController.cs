@@ -1,5 +1,6 @@
 ﻿using EmployeeManagament.Models;
 using EmployeeManagament.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
 using System.Reflection;
@@ -7,6 +8,8 @@ using System.Reflection;
 
 namespace EmployeeManagament.Controllers
 {
+
+
     public class HomeController : Controller
     {
         
