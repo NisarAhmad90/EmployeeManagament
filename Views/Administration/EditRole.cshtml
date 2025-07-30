@@ -1,0 +1,63 @@
+﻿@model EditRoleViewModel
+
+@{
+    ViewBag.Title = "Edit Role";
+}
+
+<h1 class="mb-4">Edit Role</h1>
+
+<form method="post" class="mt-3">
+    <div class="mb-3 row">
+        <label asp-for="Id" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Id" class="form-control" disabled />
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="RoleName" class="col-sm-2 col-form-label">Custom Role Name</label>
+        @* <label asp-for="RoleName" class="col-sm-2 col-form-label"></label> *@
+        <div class="col-sm-10">
+            <input asp-for="RoleName" class="form-control" />
+            <span asp-validation-for="RoleName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+    <div class="mb-3 row">
+        <div class="offset-sm-2 col-sm-10">
+            <button type="submit" class="btn btn-primary me-2">Update</button>
+            <a asp-action="ListRoles" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">Users in this role</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.Users.Any())
+            {
+                @foreach (var user in Model.Users.ToList())
+                {
+                    <h6 class="card-title">@user</h6>
+                }
+            }
+            else
+            {
+                <h6 class="card-title">None at the moment</h6>
+            }
+        </div>
+        <div class="card-footer">
+            @* <a href="#" class="btn btn-outline-danger  w-auto">Remove Users</a> *@
+            <a asp-controller="Administration" asp-action="EditUsersInRole"
+               asp-route-roleId="@Model.Id" class="btn btn-outline-primary  w-auto me-2">
+                Add or remove users from this role
+            </a>
+
+
+
+        </div>
+    </div>
+</form>
